@@ -9,7 +9,7 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('HI THERE, THIS DEMO APPS FOR PEGADAIAN UPGRADE RELEASE !!');
+  res.send('HI THIS IS THE LATES UPDATE 14 MARET 2023!!');
 });
 
 app.listen(PORT, HOST);
