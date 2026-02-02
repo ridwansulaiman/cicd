@@ -9,7 +9,7 @@ steps:
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}:${SHORT_SHA}'
     - '.'
   id: 'Building the container image'
-  logsBucket: 'gs://ridwan-demo'
+logsBucket: 'gs://ridwan-demo'
   
 # Push the container image to Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
