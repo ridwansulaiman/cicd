@@ -1,3 +1,6 @@
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+
 steps:
 # Build the container image for Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
