@@ -9,8 +9,6 @@ steps:
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}:${SHORT_SHA}'
     - '.'
   id: 'Building the container image'
-options:
-  logging: CLOUD_LOGGING_ONLY
   
 # Push the container image to Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
