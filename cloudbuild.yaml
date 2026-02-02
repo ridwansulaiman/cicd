@@ -1,7 +1,6 @@
 # cloudbuild.yaml
 options:
   logging: CLOUD_LOGGING_ONLY
-logsBucket: 'gs://ridwan-demo'
 
 steps:
 # Build the container image for Artifact Registry
