@@ -1,36 +1,36 @@
+# cloudbuild.yaml
+
 steps:
-  # 1. Build the container image
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'build'
-      - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}:${SHORT_SHA}'
-      - '.'
-    id: 'Building the container image'
-
-  # 2. Push the container image
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}:${SHORT_SHA}'
-    id: 'Pushing the image to Artifact Registry'
-
-  # 3. Deploy to Cloud Run
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'run'
-      - 'deploy'
-      - '${_SERVICE_NAME}'
-      - '--image'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}:${SHORT_SHA}'
-      - '--region'
-      - 'us-central1'
-      - '--platform'
-      - 'managed'
-      - '--allow-unauthenticated'
-    id: 'Deploying to Cloud Run'
-
-# GLOBAL SETTINGS (No indentation)
+# Build the container image for Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}:${SHORT_SHA}'
+    - '.'
+  id: 'Building the container image'
 logsBucket: 'gs://ridwan-demo'
-options:
-  logging: GCS_ONLY
+  
+# Push the container image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'push'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}:${SHORT_SHA}'
+  id: 'Pushing the image to Artifact Registry'
+
+# Deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - 'run'
+    - 'deploy'
+    - '${_SERVICE_NAME}'
+    - '--image'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}:${SHORT_SHA}'
+    - '--region'
+    - 'us-central1'
+    - '--platform'
+    - 'managed'
+    - '--allow-unauthenticated'
+  id: 'Deploying to Cloud Run'
+
+
