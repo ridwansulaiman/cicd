@@ -31,7 +31,6 @@ steps:
     - '--platform'
     - 'managed'
     - '--allow-unauthenticated'
-  id: 'Deploying to Cloud Run'
     - '--service-account'
     - 'ridwan-demo@searce-practice-data-analytics.iam.gserviceaccount.com'
   id: 'Deploying to Cloud Run'
